@@ -3,6 +3,11 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 # 设置默认时区
 ENV TZ=Asia/Shanghai
 
+# 使用网易 apt 源
+RUN sed -i "s@/archive.ubuntu.com/@/mirrors.163.com/@g" /etc/apt/sources.list \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get update --fix-missing -o Acquire::http::No-Cache=True
+
 # 安装libgdiplus库，用于Excel导出
 RUN apt-get update && apt-get install -y apt-utils libgdiplus libc6-dev
 
