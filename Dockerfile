@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y apt-utils libgdiplus libc6-dev
 RUN apt-get update && apt-get install -y fontconfig
 COPY /simsun.ttc /usr/share/fonts/simsun.ttc
 
+# 添加阿里巴巴普惠体
+COPY /AlibabaPuHuiTi-2-55-Regular.otf /usr/share/fonts/AlibabaPuHuiTi-2-55-Regular.otf
+
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
